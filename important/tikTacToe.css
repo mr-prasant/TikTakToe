@@ -1,0 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background:url('img/bg.jpg');
+    height:100vh;
+    width:100vw;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Varela Round', sans-serif;
+    overflow-x: hidden;
+}
+.game-container{
+    background:linear-gradient( 45deg,rgba(255,255,255,0.7),rgba(255,255,255,0.3));
+    width:30rem;
+    height:35rem;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-end;
+    border-radius:1.5rem;
+    box-shadow: 5px 5px 15px 0 rgba(0,0,0,0.2),
+    5px 5px 15px 0px rgba(255,255,255,0.7) inset,
+    -5px -5px 15px 0px rgba(0,0,0,0.3) inset;
+    backdrop-filter: blur(0.5rem) !important;
+
+}
+.container{
+    margin-bottom:1.5rem;
+    background:rgba(0,0,0,0.1);
+    width:25rem;
+    height:25rem;
+    border-radius:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap:0.2rem;
+    box-shadow: 5px 5px 15px 0 rgba(0,0,0,0.1),
+    5px 5px 10px 0px rgba(255,255,255,0.7) inset,
+    -5px -5px 10px 0px rgba(0,0,0,0.3) inset;
+}
+.box{
+    background:linear-gradient( 45deg,rgba(255,255,255,0.7),rgba(255,255,255,0.3));
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 6.8rem;
+    display: flex;
+    justify-content: center;
+    z-index: 4;
+}
+.z-index{
+    z-index: 2;
+}
+.game-status{
+    position:relative;
+    top:-4rem;
+    font-size: 1.5rem;
+    cursor: default;
+    letter-spacing: 1.5px;
+    word-spacing: 1px;
+    font-weight: 600;
+}
+.transparent-box{
+    position: absolute;
+    margin-bottom:1.5rem;
+    background:transparent;
+    width:25rem;
+    height:25rem;
+    border-radius:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap:0.2rem;
+    box-shadow: 5px 5px 15px 0 rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+/* ************************************************************************* */
+.point-container{
+    cursor:default;
+    width:15rem;
+    height:10rem;
+    background:linear-gradient( 45deg,rgba(218, 253, 255, 0.7),rgba(182, 250, 244, 0.3));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.3rem;
+    border-radius: 0.8rem;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.1);
+    position:absolute;
+    top:2rem;
+    left:5%;
+    backdrop-filter: blur(0.3rem);
+    box-shadow: 5px 5px 15px 0 rgba(0,0,0,0.1),
+    5px 5px 10px 0px rgba(255,255,255,0.7) inset,
+    -5px -5px 10px 0px rgba(0,0,0,0.3) inset;
+}
+.point-container h3{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.table{
+    width:80%;
+    height:70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border-radius: 0.8rem;
+}
+.table div{
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.table div:nth-child(1),.table div:nth-child(3){
+    border-right:2px solid cyan;
+}
+.table div:nth-child(1),.table div:nth-child(2){
+    border-bottom:2px solid cyan;
+}
+
+/* *********************************************************************************** */
+.menu-container{
+    background:linear-gradient( 45deg,rgba(218, 253, 255, 0.7),rgba(182, 250, 244, 0.3));
+    cursor: default;
+    position:relative;
+    font-family: 'Varela Round', sans-serif;
+    width:25rem;
+    height:15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;;
+    position:absolute;
+    left:5%;
+    bottom:2rem;
+    box-shadow: 5px 5px 15px 0 rgba(0,0,0,0.1),
+    5px 5px 10px 0px rgba(255,255,255,0.7) inset,
+    -5px -5px 10px 0px rgba(0,0,0,0.3) inset;
+    backdrop-filter: blur(0.5rem);
+}
+.menu-container h3{
+    position:absolute;
+    top:1.5rem;
+    font-size:1.5rem;
+    position:absolute;
+}
+.menu-container .final-status{
+    font-size: 1.2rem;
+    position:absolute;
+    top:4.5rem;
+}
+.menu-container .system-status{
+    font-size: 1.2rem;
+    position:absolute;
+    top:6.5rem;
+    font-weight: 600;
+}
+.menu-btn,.option{
+    display: flex;
+    width:80%;
+    justify-content: space-evenly;
+}
+.resume-pause{
+    width:4rem;
+    text-align: center;
+    font-weight: 500;
+    color:rgb(0, 0, 158);
+    border: 2px solid blue;
+    padding:0.1rem 0.6rem;
+    border-radius: 0.7rem;
+    margin-top:4rem;
+    cursor: pointer;
+    transition: all 0.4s;
+
+}
+.resume-pause:hover{
+    background: rgb(0,0,158);
+    color:whitesmoke;
+}
+.resume{
+    animation: resume 1s linear infinite;
+}
+.restart{
+    font-weight: 500;
+    text-align: center;
+    width:5rem;
+    padding:0.1rem 0.6rem;
+    border-radius: 0.7rem;
+    margin-top:4rem;
+    cursor: pointer;
+    color:red;
+    border:2px solid red;
+    transition: all 0.4s;
+    letter-spacing: 0.5px;
+}
+.restart:hover{
+    background-color:red;
+    color:black;
+}
+.restart_force{
+    animation: restart 1s linear infinite;
+}
+.replayBtn{
+    font-weight: 500;
+    text-align: center;
+    width:5rem;
+    padding:0.1rem 0.6rem;
+    border-radius: 0.7rem;
+    margin-top:4rem;
+    cursor: pointer;
+    color:red;
+    border:2px solid red;
+    transition: all 0.4s;
+    letter-spacing: 0.5px;
+}
+.replay{
+    animation: resume 1s linear infinite;
+}
+@keyframes restart {
+    0%{
+        background: rgb(0,0,158);
+    color:whitesmoke;
+    }
+    50%{
+        background: none;
+        color:red;
+        letter-spacing: 1px;
+    }
+     100%{
+        background: rgb(0,0,158);
+        color:whitesmoke;
+
+    }
+    
+}
+@keyframes resume {
+    0%{
+        background-color:rgb(0, 0, 158);
+        color:whitesmoke;
+    }
+    50%{
+        color:rgb(0, 0, 158);
+        background: none;
+        letter-spacing: 1px;
+    }
+     100%{
+        background-color:rgb(0, 0, 158);
+        color:whitesmoke;
+
+    }
+    
+}
+.option{
+    position: absolute;
+    bottom:1rem;
+    align-items: center;
+    justify-content:space-evenly;
+}
+.option div{
+    border:2px solid black;
+    height:2.5rem;
+    width:2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition:all 0.3s;
+    cursor: pointer;
+    z-index: 2;
+}
+.option div:hover{
+    background: black;
+    color:white;
+}
+.option-active{
+    background: black;
+    color:white;
+}
+.transparent2{
+    width:80%;
+    height:25%;
+    background:transparent;
+    position:absolute;
+    bottom:0.5rem;
+}
+.image1{
+    position:absolute;
+    bottom:1rem;
+    left:45%;
+}
+.image2{
+    position:absolute;
+    top:-1rem;
+}
+.title{
+    font-size: 4rem;
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    padding-top:0.5rem;
+    letter-spacing: 1.5px;
+    word-spacing: 2px;
+    color:rgba(8, 2, 92, 0.877);
+    text-align: center;
+} 
+.option h4{
+    font-size: 1.3rem;;
+}
+@media (max-width : 1000px){
+    body{
+        height: 100vh;
+        background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .title{
+        position: absolute;
+        top:01vh;
+        left:25vw;
+        font-size: 8vw;
+    }
+    .image1,.image2{
+        display: none;
+    }
+    .point-container{
+        transform: scale(1.5);
+        top:11.5vh;
+        left:38vw;
+    }
+    .menu-container{
+        position:absolute;
+        top:28vh;
+        transform: scale(1.5);
+        left:29vw;
+
+    } 
+    .game-container{
+        left:25vw;
+        transform: scale(1.5);
+        top:55vh;
+    }
+}
+.sys-page{
+    width:0vw;
+    height:100vh;
+    background : rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation : sys 3s forwards;
+    z-index: 15;
+    cursor: pointer;
+    overflow: hidden;
+    color:rgb(191, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+    word-spacing: 3.5px;
+    transition: all 0.5s;
+}
+.fren-sys{
+    width:0vw;
+    height:100vh;
+    background:linear-gradient( 45deg,rgba(218, 253, 255, 0.9),rgba(182, 250, 244, 0.4));
+    position:absolute;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: 0.5s;
+    overflow: hidden;
+}
+.system{
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 12;
+    margin: 1rem 0;
+}
+.friend{
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 12;
+}
+.fren-sys button{
+    background: none;
+    color:darkblue;
+    width:15rem;
+    padding:0.2rem 1.4rem;
+    border-radius: 1.3rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(0.5rem);
+}
+.fren-sys button:hover{
+    background: darkblue;
+    color: rgba(255, 255, 255, 1);
+    mix-blend-mode: multiply;
+}
+.fren-sys div{
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 12;
+}
+.system-status{
+    animation:status 1s linear infinite;
+}
+@keyframes status {
+    0%{
+        font-weight: 600;
+        font-size: 1.2rem;
+        letter-spacing: 0px;
+    }    
+    50%{
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+    100%{
+        font-weight: 600;
+        font-size: 1.2rem;
+        letter-spacing: 0px;
+    }
+}
+#box0,#box11{
+    display:none;
+}
