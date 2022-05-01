@@ -55,7 +55,7 @@ document.querySelector('.friend').addEventListener('click', () => {
         if (ranNum <= 10) {
             ranNum = Math.ceil(Math.random() * 20);
         }
-    }, 100);
+    }, 300);
 });
 document.querySelector('.system').addEventListener('click', () => {
     document.querySelector('.fren-sys').style.width = "0vw";
@@ -64,10 +64,6 @@ document.querySelector('.system').addEventListener('click', () => {
     for (let l = 1; l < 10; l++) {
         let allBox = `#box${l}`;
         document.querySelector(allBox).classList.remove('z-index');
-    }
-    if (systemClicked == "O") {
-    }
-    else if (systemClicked == "X") {
     }
     if (systemClicked == "O") {
         document.querySelector('.system-status').innerHTML = "YOU HAVE CHOOSEN 'X'.";
@@ -94,7 +90,7 @@ document.querySelector('.replayBtn').addEventListener('click', () => {
         console.log("clicked");
         document.querySelector('.sys-page').style.width = '100vw';
     }
-    if(ranNum == 11){
+    if (ranNum == 11) {
         console.log("clicked");
         document.querySelector('.sys-page').style.width = '0vw';
     }
@@ -433,66 +429,127 @@ function replayGame() {
 
 function winning() {
     m = systemClicked;
-    let p = "";
+    let p = "", q = "";
+    if (systemClicked == "X") {
+        for (let k = 0; k < 2; k++) {
+            p = tick[k];
+            let winStatus = `HURREY '${p}' WON THE MATCH`;
 
-    for (let k = 0; k < 2; k++) {
-        p = tick[k];
-        let winStatus = `HURREY '${p}' WON THE MATCH`;
+            if ((b1 == p && b2 == p && b3 == p) || (b1 == p && b5 == p && b9 == p) || (b1 == p && b4 == p && b7 == p) || (b4 == p && b5 == p && b6 == p) || (b2 == p && b5 == p && b8 == p) || (b7 == p && b8 == p && b9 == p) || (b3 == p && b6 == p && b9 == p) || (b3 == p && b5 == p && b7 == p)) {
+                console.log('b1 = ' + b1);
+                console.log('b2 = ' + b2);
+                console.log('b3 = ' + b3);
+                console.log('b4 = ' + b4);
+                console.log('b5 = ' + b5);
+                console.log('b6 = ' + b6);
+                console.log('b7 = ' + b7);
+                console.log('b8 = ' + b8);
+                console.log('b9 = ' + b9);
+                status.innerHTML = winStatus;
+                if (p == m) {
+                    val = p;
+                }
+                if (replay == 10) {
+                    replay = 0;
+                }
+                clearValues();
+                if (tick[k] == "O") {
+                    times = 0;
+                    pointForO = pointForO + 1;
+                }
+                else {
+                    times = 1;
+                    pointForX = pointForX + 1;
 
-        if ((b1 == p && b2 == p && b3 == p) || (b1 == p && b5 == p && b9 == p) || (b1 == p && b4 == p && b7 == p) || (b4 == p && b5 == p && b6 == p) || (b2 == p && b5 == p && b8 == p) || (b7 == p && b8 == p && b9 == p) || (b3 == p && b6 == p && b9 == p) || (b3 == p && b5 == p && b7 == p)) {
-            console.log('b1 = ' + b1);
-            console.log('b2 = ' + b2);
-            console.log('b3 = ' + b3);
-            console.log('b4 = ' + b4);
-            console.log('b5 = ' + b5);
-            console.log('b6 = ' + b6);
-            console.log('b7 = ' + b7);
-            console.log('b8 = ' + b8);
-            console.log('b9 = ' + b9);
-            status.innerHTML = winStatus;
-            if (p == m) {
-                val = p;
-            }
-            if (replay == 10) {
-                replay = 0;
-            }
-            clearValues()
-            if (tick[k] == "O") {
-                times = 0;
-                pointForO = pointForO + 1;
-            }
-            else {
-                times = 1;
-                pointForX = pointForX + 1;
+                }
+                for (let l = 1; l < 10; l++) {
+                    let allBox = `#box${l}`;
+                    document.querySelector(allBox).classList.add('z-index');
+                }
+                if (pointForO < 10) {
+                    document.querySelector('.PointOfO').innerHTML = '0' + pointForO;
+                }
+                else {
+                    document.querySelector('.PointOfO').innerHTML = pointForO;
+                }
+                if (pointForX < 10) {
+                    document.querySelector('.PointOfX').innerHTML = '0' + pointForX;
+                }
+                else {
+                    document.querySelector('.PointOfX').innerHTML = pointForX;
+                }
+                document.querySelector('.replayBtn').style.display = "block";
+                replayGame();
 
             }
-            for (let l = 1; l < 10; l++) {
-                let allBox = `#box${l}`;
-                document.querySelector(allBox).classList.add('z-index');
+            else if (replay == 9) {
+                document.querySelector('.replayBtn').style.display = "block";
+                status.innerHTML = "* * * MATCH DRAW * * *";
+                replayGame();
             }
-            if (pointForO < 10) {
-                document.querySelector('.PointOfO').innerHTML = '0' + pointForO;
-            }
-            else {
-                document.querySelector('.PointOfO').innerHTML = pointForO;
-            }
-            if (pointForX < 10) {
-                document.querySelector('.PointOfX').innerHTML = '0' + pointForX;
-            }
-            else {
-                document.querySelector('.PointOfX').innerHTML = pointForX;
-            }
-            document.querySelector('.replayBtn').style.display = "block";
-            replayGame();
 
         }
-        else if (replay == 9) {
-            document.querySelector('.replayBtn').style.display = "block";
-            status.innerHTML = "* * * MATCH DRAW * * *";
-            replayGame();
-        }
+    } else {
+        for (let k = 1; k >= 0; k--) {
+            p = tick[k];
+            let winStatus = `HURREY '${p}' WON THE MATCH`;
 
+            if ((b1 == p && b2 == p && b3 == p) || (b1 == p && b5 == p && b9 == p) || (b1 == p && b4 == p && b7 == p) || (b4 == p && b5 == p && b6 == p) || (b2 == p && b5 == p && b8 == p) || (b7 == p && b8 == p && b9 == p) || (b3 == p && b6 == p && b9 == p) || (b3 == p && b5 == p && b7 == p)) {
+                console.log('b1 = ' + b1);
+                console.log('b2 = ' + b2);
+                console.log('b3 = ' + b3);
+                console.log('b4 = ' + b4);
+                console.log('b5 = ' + b5);
+                console.log('b6 = ' + b6);
+                console.log('b7 = ' + b7);
+                console.log('b8 = ' + b8);
+                console.log('b9 = ' + b9);
+                status.innerHTML = winStatus;
+                if (p == m) {
+                    val = p;
+                }
+                if (replay == 10) {
+                    replay = 0;
+                }
+                clearValues();
+                if (tick[k] == "O") {
+                    times = 0;
+                    pointForO = pointForO + 1;
+                }
+                else {
+                    times = 1;
+                    pointForX = pointForX + 1;
+
+                }
+                for (let l = 1; l < 10; l++) {
+                    let allBox = `#box${l}`;
+                    document.querySelector(allBox).classList.add('z-index');
+                }
+                if (pointForO < 10) {
+                    document.querySelector('.PointOfO').innerHTML = '0' + pointForO;
+                }
+                else {
+                    document.querySelector('.PointOfO').innerHTML = pointForO;
+                }
+                if (pointForX < 10) {
+                    document.querySelector('.PointOfX').innerHTML = '0' + pointForX;
+                }
+                else {
+                    document.querySelector('.PointOfX').innerHTML = pointForX;
+                }
+                document.querySelector('.replayBtn').style.display = "block";
+                replayGame();
+
+            }
+            else if (replay == 9) {
+                document.querySelector('.replayBtn').style.display = "block";
+                status.innerHTML = "* * * MATCH DRAW * * *";
+                replayGame();
+            }
+
+        }
     }
+
     if (replay == 10) {
         document.querySelector('.replayBtn').style.display = "block";
         status.innerHTML = "* * * MATCH DRAW * * *";
